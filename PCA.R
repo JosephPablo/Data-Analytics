@@ -1,4 +1,5 @@
-#Principal Component Analysis And Factor Analysis 
+#Principal Component Analysis And Factor Analysis - GDP of US based on different Occupations
+# Aim: To find out which occupations contribute more to the country's GDP
 #Loading Data from the local disk
 mydata<- read.csv("/Users/varun/Desktop/git/pca_gsp.csv")
 attach(mydata)
