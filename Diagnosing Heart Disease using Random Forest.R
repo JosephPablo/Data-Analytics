@@ -59,14 +59,16 @@ str(data)
 set.seed(42)
 ## impute any missing values in the training set using proximities
 data.imputed <- rfImpute(hd ~ ., data = data, iter=6)
+#model building
 model <- randomForest(hd ~ ., data=data.imputed, proximity=TRUE)
 oob.error.data <- data.frame(
   Trees=rep(1:nrow(model$err.rate), times=3),
   Type=rep(c("OOB", "Healthy", "Unhealthy"), 
            each=nrow(model$err.rate),drop=FALSE),
+#Calculating the error rate  
   Error=c(model$err.rate[,"OOB"],
           model$err.rate[,"Healthy"],
           model$err.rate[,"Unhealthy"]))
-
+#plotting the graph
 ggplot(data=oob.error.data, aes(x=Trees, y=Error)) +
   geom_line(aes(color=Type))
